@@ -1,7 +1,7 @@
 package net.hopkins22.demoapi.entity;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -10,7 +10,7 @@ public class UserOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Date timestamp;
+    private LocalDate timestamp;
     private Integer itemCount;
     @ManyToOne( fetch = FetchType.EAGER )
     private AppUser user;
@@ -20,20 +20,20 @@ public class UserOrder {
     public UserOrder() {
     }
 
-    public UserOrder(Date timestamp, Integer itemCount, AppUser user) {
+    public UserOrder(LocalDate timestamp, Integer itemCount, AppUser user) {
         this.timestamp = timestamp;
         this.itemCount = itemCount;
         this.user = user;
     }
 
-    public UserOrder(Date timestamp, Integer itemCount, AppUser user, List<OrderItem> orderItems) {
+    public UserOrder(LocalDate timestamp, Integer itemCount, AppUser user, List<OrderItem> orderItems) {
         this.timestamp = timestamp;
         this.itemCount = itemCount;
         this.user = user;
         this.orderItems = orderItems;
     }
 
-    public UserOrder(Long id, Date timestamp, Integer itemCount, AppUser user, List<OrderItem> orderItems) {
+    public UserOrder(Long id, LocalDate timestamp, Integer itemCount, AppUser user, List<OrderItem> orderItems) {
         this.id = id;
         this.timestamp = timestamp;
         this.itemCount = itemCount;
@@ -49,11 +49,11 @@ public class UserOrder {
         this.id = id;
     }
 
-    public Date getTimestamp() {
+    public LocalDate getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(Date timestamp) {
+    public void setTimestamp(LocalDate timestamp) {
         this.timestamp = timestamp;
     }
 
