@@ -54,5 +54,5 @@ steps:
     Action: 'Deploy'
     AzureSpringCloud: 'hopkins-demo22-api-sc'
     AppName: 'hopkins-demo22-api'
-    UseStagingDeployment: true
+    UseStagingDeployment: false
 
