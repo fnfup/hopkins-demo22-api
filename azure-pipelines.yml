@@ -16,7 +16,7 @@ steps:
     KeyVaultName: 'az-hopkins-demo22-kv'
     SecretsFilter: "*"
     RunAsPreJob: true
-    
+
 - task: Bash@3
   inputs:
     targetType: 'inline'
@@ -26,10 +26,8 @@ steps:
       echo "-- Build Env Vars --"
       echo $(demodbhost)
       echo $(demodbuser)
-      echo $testEnvVal
       echo "-- Build Env Vars --"
-    env:
-      testEnvVal: 'test-env-value1234'
+    
 
 - task: Maven@3
   inputs:
