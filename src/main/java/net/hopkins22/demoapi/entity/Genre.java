@@ -10,8 +10,8 @@ public class Genre {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @OneToMany ( mappedBy = "genre", fetch = FetchType.EAGER )
-    private List<MusicTrack> genreMusic;
+//    @OneToMany ( mappedBy = "genre" )//, fetch = FetchType.EAGER )
+//    private List<MusicTrack> genreMusic;
 
     public Genre() {
     }
@@ -19,12 +19,12 @@ public class Genre {
     public Genre(Long id, String name, List<MusicTrack> genreMusic) {
         this.id = id;
         this.name = name;
-        this.genreMusic = genreMusic;
+        //this.genreMusic = genreMusic;
     }
 
     public Genre(String name, List<MusicTrack> genreMusic) {
         this.name = name;
-        this.genreMusic = genreMusic;
+        //this.genreMusic = genreMusic;
     }
 
     public Genre(String name) {
@@ -47,13 +47,13 @@ public class Genre {
         this.name = name;
     }
 
-    public List<MusicTrack> getGenreMusic() {
-        return genreMusic;
-    }
-
-    public void setGenreMusic(List<MusicTrack> genreMusic) {
-        this.genreMusic = genreMusic;
-    }
+//    public List<MusicTrack> getGenreMusic() {
+//        return genreMusic;
+//    }
+//
+//    public void setGenreMusic(List<MusicTrack> genreMusic) {
+//        this.genreMusic = genreMusic;
+//    }
 
     public boolean isGenre(String other) {
         return this.name.equalsIgnoreCase(other);
@@ -64,7 +64,7 @@ public class Genre {
         return "Genre{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", genreMusicLength=" + genreMusic.size() +
+                //", genreMusicLength=" + genreMusic.size() +
                 '}';
     }
 }

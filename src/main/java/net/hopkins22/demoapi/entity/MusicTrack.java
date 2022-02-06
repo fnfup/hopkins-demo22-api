@@ -10,9 +10,9 @@ public class MusicTrack {
     private Long id;
     private String title;
     private String album;
-    @ManyToOne( fetch = FetchType.EAGER )
+    @ManyToOne//( fetch = FetchType.EAGER )
     private Artist artist;
-    @ManyToOne( fetch = FetchType.EAGER )
+    @ManyToOne//( fetch = FetchType.EAGER )
     private Genre genre;
 
     public MusicTrack() {

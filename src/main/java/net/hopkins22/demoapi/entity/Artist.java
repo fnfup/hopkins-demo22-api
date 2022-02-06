@@ -12,8 +12,8 @@ public class Artist {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @OneToMany ( mappedBy = "artist", fetch = FetchType.EAGER )
-    private List<MusicTrack> artistMusic;
+//    @OneToMany ( mappedBy = "artist", fetch = FetchType.LAZY )
+//    private List<MusicTrack> artistMusic;
     private boolean isActive;
 
     public Artist() {
@@ -22,13 +22,13 @@ public class Artist {
     public Artist(Long id, String name, List<MusicTrack> artistMusic, boolean isActive) {
         this.id = id;
         this.name = name;
-        this.artistMusic = artistMusic;
+        //this.artistMusic = artistMusic;
         this.isActive = isActive;
     }
 
     public Artist(String name, List<MusicTrack> artistMusic, boolean isActive) {
         this.name = name;
-        this.artistMusic = artistMusic;
+        //this.artistMusic = artistMusic;
         this.isActive = isActive;
     }
 
@@ -59,13 +59,13 @@ public class Artist {
         this.name = name;
     }
 
-    public List<MusicTrack> getArtistMusic() {
-        return artistMusic;
-    }
-
-    public void setArtistMusic(List<MusicTrack> artistMusic) {
-        this.artistMusic = artistMusic;
-    }
+//    public List<MusicTrack> getArtistMusic() {
+//        return artistMusic;
+//    }
+//
+//    public void setArtistMusic(List<MusicTrack> artistMusic) {
+//        this.artistMusic = artistMusic;
+//    }
 
     public boolean isActive() {
         return isActive;
@@ -80,7 +80,7 @@ public class Artist {
         return "Artist{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", artistMusicLength=" + artistMusic.size() +
+                //", artistMusicLength=" + artistMusic.size() +
                 ", isActive=" + isActive +
                 '}';
     }

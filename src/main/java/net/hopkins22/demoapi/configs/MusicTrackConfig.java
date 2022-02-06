@@ -44,8 +44,13 @@ public class MusicTrackConfig {
                                 entry("passion fruit", "more life"),
                                 entry("nonstop", "scorpion")
                         );
-
                         buildArtistCollection(a, "rap", artistMusic);
+
+                        Map<String, String> rnbMusic = Map.ofEntries(
+                                entry("teenage fever", "more life"),
+                                entry("marvins room", "take care")
+                        );
+                        buildArtistCollection(a, "r&b", rnbMusic);
                         break;
                     }
                     case "adele":
@@ -77,8 +82,15 @@ public class MusicTrackConfig {
                                 entry("young americans", "young americans"),
                                 entry("ashes to ashes", "tears for fears")
                         );
-
                         buildArtistCollection(a, "experimental", artistMusic);
+
+                        Map<String, String> rockMusic = Map.ofEntries(
+                                entry("china girl", "lets dance"),
+                                entry("wild is the wind", "station to station"),
+                                entry("cat people", "cat people")
+                        );
+                        buildArtistCollection(a, "rock", rockMusic);
+
                         break;
                     }
                     case "beatles":
@@ -88,8 +100,13 @@ public class MusicTrackConfig {
                                 entry("hey jude", "single"),
                                 entry("something", "abbey road")
                         );
-
                         buildArtistCollection(a, "rock", artistMusic);
+
+                        Map<String, String> popMusic = Map.ofEntries(
+                                entry("she loves you", "pat masters"),
+                                entry("penny lane", "magical mystery tour")
+                        );
+                        buildArtistCollection(a, "pop", popMusic);
                         break;
                     }
                     case "led zeppelin":
