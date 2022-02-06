@@ -1,5 +1,6 @@
 package net.hopkins22.demoapi.services;
 
+import net.hopkins22.demoapi.domain.UserLibraryDto;
 import net.hopkins22.demoapi.entity.UserMusic;
 import net.hopkins22.demoapi.repository.IUserMusicRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +15,9 @@ public class AppUserService {
     @Autowired
     private IUserMusicRepository userMusicRepo;
 
-    public List<UserMusic> getUserMusic(Long userId) {
-        return userMusicRepo.findAllByUserId(userId);
+    public UserLibraryDto getUserMusic(Long userId) {
+        return new UserLibraryDto(
+                userMusicRepo.findAllByUserId(userId));
     }
 
     @Transactional

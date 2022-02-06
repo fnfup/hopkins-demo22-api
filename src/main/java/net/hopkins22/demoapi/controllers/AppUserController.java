@@ -1,5 +1,6 @@
 package net.hopkins22.demoapi.controllers;
 
+import net.hopkins22.demoapi.domain.UserLibraryDto;
 import net.hopkins22.demoapi.entity.UserMusic;
 import net.hopkins22.demoapi.services.AppUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ public class AppUserController {
     private AppUserService service;
 
     @GetMapping(path = "/library/{userId}")
-    public List<UserMusic> getUserLibrary(@PathVariable Long userId) {
+    public UserLibraryDto getUserLibrary(@PathVariable Long userId) {
         return service.getUserMusic(userId);
     }
 
