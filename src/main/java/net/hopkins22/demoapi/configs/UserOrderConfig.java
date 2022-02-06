@@ -7,12 +7,12 @@ import net.hopkins22.demoapi.repository.IAppUserRepository;
 import net.hopkins22.demoapi.repository.IMusicTrackRepository;
 import net.hopkins22.demoapi.repository.IUserMusicRepository;
 import net.hopkins22.demoapi.repository.OrderAggregateRoot;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
+import org.springframework.core.annotation.Order;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,13 +32,13 @@ public class UserOrderConfig {
     @Autowired
     private OrderAggregateRoot aggregateRoot;
 
-    @Bean
-    @DependsOn({ "artist_data", "genre_data",
-            "appuser_data", "music_data", "usermusic_data" })
+    @Bean("userorder_data")
+    //@DependsOn({ "artist_data", "genre_data", "appuser_data", "music_data", "usermusic_data" })
+    @Order(15)
     CommandLineRunner commandLineRunner() {
         return args -> {
 
-            System.out.println("---- User Orders -----");
+            System.out.println("----s User Orders s-----");
 
             Optional<AppUser> targetUser = appUserRepo
                     .findByUsername("hopkinsdemouser")
@@ -57,7 +57,7 @@ public class UserOrderConfig {
 
                 aggregateRoot.commitUserOrder(targetUser.get(), orderItems);
             }
-            System.out.println("---- User Orders -----");
+            System.out.println("----e User Orders e-----");
 
         };
     }

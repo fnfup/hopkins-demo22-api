@@ -14,6 +14,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
+import org.springframework.core.annotation.Order;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,11 +32,12 @@ public class UserMusicConfig {
     private IMusicTrackRepository catalogRepo;
 
     @Bean("usermusic_data")
-    @DependsOn({ "artist_data", "genre_data", "appuser_data", "music_data" })
+    //@DependsOn({ "artist_data", "genre_data", "appuser_data", "music_data" })
+    @Order(14)
     CommandLineRunner commandLineRunner() {
 
         return args -> {
-//            System.out.println("---- User Music -----");
+            System.out.println("----s User Music s-----");
 
             Optional<AppUser> targetUser = appUserRepo
                     .findByUsername("hopkinsdemouser")
@@ -50,7 +52,7 @@ public class UserMusicConfig {
 
                 userMusicRepo.saveAll(library);
             }
-//            System.out.println("---- User Music -----");
+            System.out.println("----e User Music e-----");
         };
 
     }

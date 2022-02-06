@@ -5,6 +5,7 @@ import net.hopkins22.demoapi.repository.IArtistRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 
 import java.util.List;
 
@@ -12,8 +13,11 @@ import java.util.List;
 public class ArtistConfig {
 
     @Bean("artist_data")
+    @Order(11)
     CommandLineRunner commandLineRunner(IArtistRepository repository) {
         return args -> {
+            System.out.println("----s Music Artists s-----");
+
             Artist drake = new Artist("drake", true);
             Artist adele = new Artist("adele", true);
             Artist chris = new Artist("chris stapleton", true);
@@ -25,6 +29,8 @@ public class ArtistConfig {
             repository.saveAll(List.of(
                drake, adele, chris, davidBowie, beatles, zeppelin, alicia
             ));
+
+            System.out.println("----e Music Artists e-----");
         };
     }
 

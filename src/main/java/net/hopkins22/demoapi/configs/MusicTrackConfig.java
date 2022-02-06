@@ -10,6 +10,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
+import org.springframework.core.annotation.Order;
 
 import java.util.*;
 
@@ -23,13 +24,16 @@ public class MusicTrackConfig {
     List<MusicTrack> musicTracks;
 
     @Bean("music_data")
-    @DependsOn({ "artist_data", "genre_data" })
+    //@DependsOn({ "artist_data", "genre_data" })
+    @Order(13)
     CommandLineRunner commandLineRunner(
             IMusicTrackRepository musicRepo,
             IArtistRepository artistRepo,
             IGenreRepository genreRepo) {
 
         return args -> {
+
+            System.out.println("----s Music Tracks s-----");
 
             this.artists = artistRepo.findAll();
             this.genres = genreRepo.findAll();
@@ -135,6 +139,8 @@ public class MusicTrackConfig {
             }
 
             musicRepo.saveAll(musicTracks);
+
+            System.out.println("----e Music Tracks e-----");
         };
 
 
