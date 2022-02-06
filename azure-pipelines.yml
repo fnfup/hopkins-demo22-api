@@ -47,3 +47,12 @@ steps:
     AZ_DB_CSTR_DB: $(demodbtarget)
     AZ_DB_CSTR_USER: $(demodbuser)
     AZ_DB_CSTR_PWD: $(demodbpwd)
+
+- task: AzureSpringCloud@0
+  inputs:
+    azureSubscription: 'az-tenant'
+    Action: 'Deploy'
+    AzureSpringCloud: 'hopkins-demo22-api-sc'
+    AppName: 'hopkins-demo22-api'
+    UseStagingDeployment: true
+
