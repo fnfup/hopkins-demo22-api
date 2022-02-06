@@ -56,4 +56,10 @@ steps:
     AppName: 'hopkins-demo22-api'
     UseStagingDeployment: false
     DeploymentName: 'default'
+  env:
+    AZ_DB_CSTR_HOST: $(demodbhost)
+    AZ_DB_CSTR_DB: $(demodbtarget)
+    AZ_DB_CSTR_USER: $(demodbuser)
+    AZ_DB_CSTR_PWD: $(demodbpwd)
+
 
