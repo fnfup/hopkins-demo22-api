@@ -1,7 +1,8 @@
 package net.hopkins22.demoapi.controllers;
 
+import net.hopkins22.demoapi.domain.LibraryStatusDto;
+import net.hopkins22.demoapi.domain.LibraryStatusRequestDto;
 import net.hopkins22.demoapi.domain.UserLibraryDto;
-import net.hopkins22.demoapi.entity.UserMusic;
 import net.hopkins22.demoapi.services.AppUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -26,5 +27,10 @@ public class AppUserController {
         service.toggleLibraryActiveState(trackId);
     }
 
+    @PostMapping( path="/library/status" )
+    public List<LibraryStatusDto> getLibraryStatus(
+            @RequestBody LibraryStatusRequestDto requestDto) {
+        return service.getMusicLibraryStatus(requestDto);
+    }
 
 }

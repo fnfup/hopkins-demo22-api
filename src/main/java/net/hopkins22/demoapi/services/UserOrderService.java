@@ -92,7 +92,6 @@ public class UserOrderService {
         var duplicates = tracks.stream().filter(track -> {
             boolean result = currentLibrary.stream()
                     .anyMatch(curr -> curr.getTrack().getId() == track.getId());
-            System.out.println();
             return result;
         }).collect(Collectors.toList());
 
