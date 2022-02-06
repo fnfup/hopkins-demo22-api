@@ -33,7 +33,8 @@ public class UserOrderConfig {
     private OrderAggregateRoot aggregateRoot;
 
     @Bean
-    @DependsOn({ "usermusic_data" })
+    @DependsOn({ "artist_data", "genre_data",
+            "appuser_data", "music_data", "usermusic_data" })
     CommandLineRunner commandLineRunner() {
         return args -> {
 

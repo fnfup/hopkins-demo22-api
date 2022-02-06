@@ -31,7 +31,7 @@ public class UserMusicConfig {
     private IMusicTrackRepository catalogRepo;
 
     @Bean("usermusic_data")
-    @DependsOn({ "music_data", "appuser_data" })
+    @DependsOn({ "artist_data", "genre_data", "appuser_data", "music_data" })
     CommandLineRunner commandLineRunner() {
 
         return args -> {
