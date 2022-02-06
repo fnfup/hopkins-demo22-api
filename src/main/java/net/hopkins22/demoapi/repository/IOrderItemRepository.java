@@ -7,13 +7,16 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.UUID;
 
 @Repository
 public interface IOrderItemRepository extends JpaRepository<OrderItem, Long> {
 
-    @Query("SELECT i from OrderItem i WHERE i.userOrder.id = :orderId ")
-    public List<OrderItem> findItemsByOrderId(@Param("orderId") Long orderId);
+//    @Query("SELECT i from OrderItem i WHERE i.userOrder.id = :orderId ")
+//    public List<OrderItem> findItemsByOrderId(@Param("orderId") Long orderId);
+//
+//    public List<OrderItem> findAllByUserOrderId(Long orderId);
 
-    public List<OrderItem> findAllByUserOrderId(Long orderId);
+//    public List<OrderItem> findAllByOrderUid(UUID orderUID);
 
 }

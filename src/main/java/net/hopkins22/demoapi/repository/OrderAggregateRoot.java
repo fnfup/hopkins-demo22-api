@@ -41,14 +41,14 @@ public class OrderAggregateRoot {
             AppUser user,
             List<MusicTrack> tracks) {
 
-        UserOrder order = new UserOrder(LocalDate.now(), tracks.size(), user);
-        UserOrder savedOrder = orderRepo.save(order);
-
         List<OrderItem> orderItems = tracks.stream()
-                .map(track -> new OrderItem(track, user, savedOrder))
+                .map(track -> new OrderItem(track, user))
                 .collect(Collectors.toList());
 
         orderItemRepo.saveAll(orderItems);
+
+        UserOrder order = new UserOrder(LocalDate.now(), tracks.size(), user, orderItems);
+        orderRepo.save(order);
 
         List<UserMusic> userMusic = tracks.stream()
                 .map(track -> new UserMusic(true, user, track))

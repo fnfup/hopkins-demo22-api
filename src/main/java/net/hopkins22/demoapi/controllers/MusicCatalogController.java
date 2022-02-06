@@ -1,5 +1,6 @@
 package net.hopkins22.demoapi.controllers;
 
+import net.hopkins22.demoapi.domain.MusicCatalogDto;
 import net.hopkins22.demoapi.domain.RequestFilterDto;
 import net.hopkins22.demoapi.entity.Artist;
 import net.hopkins22.demoapi.entity.Genre;
@@ -22,19 +23,19 @@ public class MusicCatalogController {
     }
 
     @PostMapping( consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.TEXT_PLAIN_VALUE } )
-    public List<MusicTrack> getMusicCatalog(
+    public MusicCatalogDto getMusicCatalog(
             @RequestBody RequestFilterDto filter) {
-        return service.searchMusicCatalog(filter);
+        return new MusicCatalogDto(service.searchMusicCatalog(filter));
     }
 
     @GetMapping( path = "/artist/{artistId}")
-    public List<MusicTrack> getArtistCatalog(@PathVariable Long artistId) {
-        return service.getMusicByArtist(artistId);
+    public MusicCatalogDto getArtistCatalog(@PathVariable Long artistId) {
+        return new MusicCatalogDto(service.getMusicByArtist(artistId));
     }
 
     @GetMapping( path = "/genre/{genreId}")
-    public List<MusicTrack> getGenreCatalog(@PathVariable Long genreId) {
-        return service.getMusicByGenre(genreId);
+    public MusicCatalogDto getGenreCatalog(@PathVariable Long genreId) {
+        return new MusicCatalogDto(service.getMusicByGenre(genreId));
     }
 
     @GetMapping( path = "/artist")

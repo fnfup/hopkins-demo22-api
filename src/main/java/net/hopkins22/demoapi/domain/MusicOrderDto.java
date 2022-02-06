@@ -1,11 +1,12 @@
 package net.hopkins22.demoapi.domain;
 
+import org.bouncycastle.util.Arrays;
 import org.springframework.util.Assert;
 
 public class MusicOrderDto {
 
     private Long userId;
-    private Integer[] items;
+    private Long[] items;
 
     public MusicOrderDto() {
     }
@@ -14,7 +15,7 @@ public class MusicOrderDto {
         this.userId = userId;
     }
 
-    public MusicOrderDto(Long userId, Integer[] items) {
+    public MusicOrderDto(Long userId, Long[] items) {
         this.userId = userId;
         this.items = items;
     }
@@ -27,17 +28,21 @@ public class MusicOrderDto {
         this.userId = userId;
     }
 
-    public Integer[] getItems() {
+    public Long[] getItems() {
         return items;
     }
 
-    public void setItems(Integer[] items) {
+    public void setItems(Long[] items) {
         this.items = items;
     }
 
-    public boolean isValid() {
-        Assert.isTrue(this.userId > 0, "Invalid purchase user id");
-        Assert.notEmpty(this.items, "List of purchase orders cannot be empty");
+    public static boolean isValid(MusicOrderDto other) {
+        Assert.notNull(other, "Null purchase request object");
+        Assert.notNull(other.userId, "Null purchase userId field in request object");
+        Assert.notNull(other.items, "Null purchase userId field in request object");
+        Assert.isTrue(other.userId > 0, "Invalid purchase user id");
+        Assert.isTrue(!Arrays.isNullOrEmpty(other.items), "List of purchase orders cannot be empty");
+        Assert.noNullElements(other.items, "Invalid/null list of purchase orders");
         return true;
     }
 }
