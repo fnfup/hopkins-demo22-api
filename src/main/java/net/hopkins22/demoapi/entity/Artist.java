@@ -9,11 +9,10 @@ import java.util.List;
 public class Artist {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @OneToMany ( mappedBy = "artist" )
-    @Transient
+    @OneToMany ( mappedBy = "artist", fetch = FetchType.EAGER )
     private List<MusicTrack> artistMusic;
     private boolean isActive;
 
@@ -81,7 +80,7 @@ public class Artist {
         return "Artist{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", artistMusic=" + artistMusic +
+                ", artistMusicLength=" + artistMusic.size() +
                 ", isActive=" + isActive +
                 '}';
     }

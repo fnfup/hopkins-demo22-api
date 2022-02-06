@@ -1,32 +1,36 @@
 package net.hopkins22.demoapi.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
 public class MusicTrack {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
-    @ManyToOne
+    private String album;
+    @ManyToOne( fetch = FetchType.EAGER )
     private Artist artist;
+    @ManyToOne( fetch = FetchType.EAGER )
+    private Genre genre;
 
     public MusicTrack() {
     }
 
-    public MusicTrack(Long id, String title, Artist artist) {
-        this.id = id;
+    public MusicTrack(String title, String album, Artist artist, Genre genre) {
         this.title = title;
+        this.album = album;
         this.artist = artist;
+        this.genre = genre;
     }
 
-    public MusicTrack(String title, Artist artist) {
+    public MusicTrack(Long id, String title, String album, Artist artist, Genre genre) {
+        this.id = id;
         this.title = title;
+        this.album = album;
         this.artist = artist;
+        this.genre = genre;
     }
 
     public Long getId() {
@@ -53,12 +57,30 @@ public class MusicTrack {
         this.artist = artist;
     }
 
+    public String getAlbum() {
+        return album;
+    }
+
+    public void setAlbum(String album) {
+        this.album = album;
+    }
+
+    public Genre getGenre() {
+        return genre;
+    }
+
+    public void setGenre(Genre genre) {
+        this.genre = genre;
+    }
+
     @Override
     public String toString() {
         return "MusicTrack{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
+                ", album='" + album + '\'' +
                 ", artist=" + artist +
+                ", genre=" + genre +
                 '}';
     }
 }
