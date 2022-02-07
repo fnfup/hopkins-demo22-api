@@ -14,6 +14,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "catalog")
+@CrossOrigin(
+        origins = { "localhost:8080", "localhost:4200",
+                "https://hopkins-demo22-api-sc-hopkins-demo22-ui.azuremicroservices.io" })
 public class MusicCatalogController {
 
     @Autowired
