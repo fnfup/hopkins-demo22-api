@@ -12,6 +12,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
+import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ import java.util.Random;
 import java.util.stream.Collectors;
 
 @Configuration
+@Order(Ordered.LOWEST_PRECEDENCE)
 public class UserOrderConfig {
 
     @Autowired
@@ -34,7 +36,7 @@ public class UserOrderConfig {
 
     @Bean("userorder_data")
     //@DependsOn({ "artist_data", "genre_data", "appuser_data", "music_data", "usermusic_data" })
-    @Order(15)
+    @Order(Ordered.LOWEST_PRECEDENCE)
     CommandLineRunner commandLineRunner() {
         return args -> {
 
