@@ -1,5 +1,6 @@
 package net.hopkins22.demoapi.controllers;
 
+import net.hopkins22.demoapi.domain.IAuthenticationFacade;
 import net.hopkins22.demoapi.domain.MusicCatalogDto;
 import net.hopkins22.demoapi.domain.RequestFilterDto;
 import net.hopkins22.demoapi.entity.Artist;
@@ -8,6 +9,9 @@ import net.hopkins22.demoapi.entity.MusicTrack;
 import net.hopkins22.demoapi.services.MusicCatalogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,6 +25,8 @@ public class MusicCatalogController {
 
     @Autowired
     private MusicCatalogService service;
+    @Autowired
+    private IAuthenticationFacade authFacade;
 
     public MusicCatalogController() {
     }
@@ -41,13 +47,16 @@ public class MusicCatalogController {
         return new MusicCatalogDto(service.getMusicByGenre(genreId));
     }
 
+
     @GetMapping( path = "/artist")
     public List<Artist> getArtists() {
+        // Authentication auth = authFacade.getAuthentication(); // debugging and testing
         return service.getAvailableArtists();
     }
 
     @GetMapping( path = "/genre")
     public List<Genre> getGenres() {
+        Authentication auth = authFacade.getAuthentication(); // debugging and testing
         return service.getAvailableGenres();
     }
 
