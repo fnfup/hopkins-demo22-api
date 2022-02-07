@@ -12,7 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping(path = "user")
 @CrossOrigin(
-        origins = { "localhost:8080", "localhost:4200",
+        origins = { "http://localhost:8080", "http://localhost:4200",
                 "https://hopkins-demo22-api-sc-hopkins-demo22-ui.azuremicroservices.io" })
 public class AppUserController {
 
