@@ -14,14 +14,14 @@ import java.util.Optional;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-public class UserOrdersBoostrapper extends Thread {
+public class UserOrdersBootstrap extends Thread {
 
     private final OrderAggregateRoot innerAggregateRoot;
     private final IAppUserRepository innerAppUserRepo;
     private final IMusicTrackRepository innerCatalogRepo;
     private final IUserMusicRepository innerUserMusicRepo;
 
-    public UserOrdersBoostrapper(
+    public UserOrdersBootstrap(
             OrderAggregateRoot aggregateRootCtr,
             IAppUserRepository appUserRepoCtr,
             IMusicTrackRepository catalogRepoCtr,

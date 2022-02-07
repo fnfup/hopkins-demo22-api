@@ -1,19 +1,14 @@
 package net.hopkins22.demoapi.configs;
 
 import net.hopkins22.demoapi.entity.AppUser;
-import net.hopkins22.demoapi.entity.Artist;
 import net.hopkins22.demoapi.entity.MusicTrack;
 import net.hopkins22.demoapi.entity.UserMusic;
 import net.hopkins22.demoapi.repository.IAppUserRepository;
-import net.hopkins22.demoapi.repository.IArtistRepository;
 import net.hopkins22.demoapi.repository.IMusicTrackRepository;
 import net.hopkins22.demoapi.repository.IUserMusicRepository;
-import org.apache.catalina.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.DependsOn;
 import org.springframework.core.annotation.Order;
 
 import java.util.ArrayList;
@@ -24,17 +19,13 @@ import java.util.Random;
 @Configuration
 public class UserMusicConfig {
 
-    @Autowired
-    private IAppUserRepository appUserRepo;
-    @Autowired
-    private IUserMusicRepository userMusicRepo;
-    @Autowired
-    private IMusicTrackRepository catalogRepo;
-
     @Bean("usermusic_data")
     //@DependsOn({ "artist_data", "genre_data", "appuser_data", "music_data" })
-    @Order(14)
-    CommandLineRunner commandLineRunner() {
+    @Order(15)
+    CommandLineRunner commandLineRunner(
+        IAppUserRepository appUserRepo,
+        IUserMusicRepository userMusicRepo,
+        IMusicTrackRepository catalogRepo) {
 
         return args -> {
             System.out.println("----s User Music s-----");
@@ -44,7 +35,8 @@ public class UserMusicConfig {
                     .stream().findFirst();
 
             if (targetUser.isPresent()) {
-                List<UserMusic> library = getRandomSetOfMusic(6, targetUser.get());
+                List<UserMusic> library = getRandomSetOfMusic(
+                    catalogRepo, 6, targetUser.get());
 
 //                for (UserMusic m: library) {
 //                    System.out.println(m);
@@ -57,7 +49,9 @@ public class UserMusicConfig {
 
     }
 
-    private List<UserMusic> getRandomSetOfMusic(Integer count, AppUser user) {
+    private List<UserMusic> getRandomSetOfMusic(
+        IMusicTrackRepository catalogRepo,
+        Integer count, AppUser user) {
         List<MusicTrack> allMusic = catalogRepo.findAll();
         Random rand = new Random();
 
