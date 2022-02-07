@@ -38,10 +38,11 @@ public class UserOrdersBootstrap extends Thread {
 
         System.out.println("----sT User Orders Ts-----");
 
-        System.out.println("--- User Orders 5sec Wait ---");
+        System.out.println("--- User Orders 8sec Wait ---");
         try {
-            wait(5000L);
+            wait(8000L);
             executeInit();
+            System.out.println("----eT User Orders Te-----");
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -64,7 +65,6 @@ public class UserOrdersBootstrap extends Thread {
                                     String.valueOf(curr.getId()), String::concat));
 
             innerAggregateRoot.commitUserOrder(targetUser.get(), orderItems);
-            System.out.println("----eT User Orders Te-----");
         }
     }
 

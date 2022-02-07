@@ -23,42 +23,86 @@ public class UserMusicConfig {
     //@DependsOn({ "artist_data", "genre_data", "appuser_data", "music_data" })
     @Order(15)
     CommandLineRunner commandLineRunner(
-        IAppUserRepository appUserRepo,
-        IUserMusicRepository userMusicRepo,
-        IMusicTrackRepository catalogRepo) {
+            IAppUserRepository appUserRepo,
+            IUserMusicRepository userMusicRepo,
+            IMusicTrackRepository catalogRepo) {
 
         return args -> {
             System.out.println("----s User Music s-----");
 
-            Optional<AppUser> targetUser = appUserRepo
-                    .findByUsername("hopkinsdemouser")
-                    .stream().findFirst();
+            Thread userMusicBootInit = new UserMusicBootstrap(
+                  appUserRepo, userMusicRepo, catalogRepo
+            );
+            userMusicBootInit.start();
 
-            if (targetUser.isPresent()) {
-                List<UserMusic> library = getRandomSetOfMusic(
+            System.out.println("----e User Music e-----");
+        };
+
+    }
+
+    private class UserMusicBootstrap extends Thread {
+
+        IAppUserRepository appUserRepo;
+        IUserMusicRepository userMusicRepo;
+        IMusicTrackRepository catalogRepo;
+
+        public UserMusicBootstrap(
+                IAppUserRepository appUserRepo,
+                IUserMusicRepository userMusicRepo,
+                IMusicTrackRepository catalogRepo) {
+            this.appUserRepo = appUserRepo;
+            this.userMusicRepo = userMusicRepo;
+            this.catalogRepo =catalogRepo;
+        }
+
+        @Override
+        public synchronized void run() {
+
+            System.out.println("----sT User Music Ts-----");
+
+            System.out.println("--- User Music 6sec Wait ---");
+            try {
+                wait(6000L);
+                executeInit(appUserRepo, userMusicRepo, catalogRepo);
+                System.out.println("----eT User Music Te-----");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
+    private void executeInit(
+            IAppUserRepository appUserRepo,
+            IUserMusicRepository userMusicRepo,
+            IMusicTrackRepository catalogRepo) {
+
+        Optional<AppUser> targetUser = appUserRepo
+                .findByUsername("hopkinsdemouser")
+                .stream().findFirst();
+
+        if (targetUser.isPresent()) {
+            List<UserMusic> library = getRandomSetOfMusic(
                     catalogRepo, 6, targetUser.get());
 
 //                for (UserMusic m: library) {
 //                    System.out.println(m);
 //                }
 
-                userMusicRepo.saveAll(library);
-            }
-            System.out.println("----e User Music e-----");
-        };
-
+            userMusicRepo.saveAll(library);
+        }
     }
 
     private List<UserMusic> getRandomSetOfMusic(
-        IMusicTrackRepository catalogRepo,
-        Integer count, AppUser user) {
+            IMusicTrackRepository catalogRepo,
+            Integer count, AppUser user) {
         List<MusicTrack> allMusic = catalogRepo.findAll();
         Random rand = new Random();
 
         List<UserMusic> userMusic = new ArrayList<>();
 
         // add 6 random songs to user library
-        for(int i = 0; i < count; i++) {
+        for (int i = 0; i < count; i++) {
             int randomIndex = rand.nextInt(allMusic.size());
 
             MusicTrack track = allMusic.get(randomIndex);
