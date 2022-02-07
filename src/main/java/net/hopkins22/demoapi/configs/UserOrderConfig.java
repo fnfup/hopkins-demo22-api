@@ -35,10 +35,10 @@ public class UserOrderConfig {
 
             System.out.println("----s User Orders s-----");
 
-            Thread userOrdersBootInit = new UserOrdersBoostrapper(
-                    aggregateRoot, appUserRepo, catalogRepo, userMusicRepo);
+//            Thread userOrdersBootInit = new UserOrdersBoostrapper(
+//                    aggregateRoot, appUserRepo, catalogRepo, userMusicRepo);
+//            userOrdersBootInit.start();
 
-            userOrdersBootInit.start();
             System.out.println("----e User Orders e-----");
 
         };
