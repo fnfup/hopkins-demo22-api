@@ -31,10 +31,10 @@ public class DemoWebSecurityConfig extends AADWebSecurityConfigurerAdapter {
         System.out.println("Setting up web security");
         super.configure(http);
         http
-                .requiresChannel()
-                // .antMatchers("/login/oauth2/code/").requiresInsecure()
-                .anyRequest().requiresSecure()
-                .and()
+//                .requiresChannel()
+//                // .antMatchers("/login/oauth2/code/").requiresInsecure()
+//                .anyRequest().requiresSecure()
+//                .and()
                 .cors()
                 .and()
                 .authorizeRequests()
