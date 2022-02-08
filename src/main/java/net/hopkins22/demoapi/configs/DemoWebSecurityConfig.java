@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 
 import javax.annotation.Resource;
+import java.lang.reflect.Array;
 
 //@EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -47,11 +48,14 @@ public class DemoWebSecurityConfig extends AADWebSecurityConfigurerAdapter {
 //                .antMatchers("/login/oauth2/code/").requiresInsecure()
 //                .anyRequest().requiresSecure()
 //                .and()
-                .cors().configurationSource(corsConfigSource)
-                .and()
+                .cors().configurationSource(corsConfigSource);
+
+        http
                 .authorizeRequests()
                 .antMatchers(AUTH_WHITELIST).permitAll()
-                .anyRequest().authenticated();
+                .antMatchers(
+                        "/catalog**", "/user**", "/order**"
+                ).authenticated();
     }
 
 
