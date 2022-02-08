@@ -53,10 +53,11 @@ public class DemoWebSecurityConfig extends AADWebSecurityConfigurerAdapter {
                 "https://hopkins-demo22-api-sc-hopkins-demo22-ui.azuremicroservices.io"
                  ));
         config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "POST", "OPTIONS"));
-        config.setAllowedHeaders(Arrays.asList(
-                "X-Requested-With", "Origin", "Content-Type",
-                "Accept", "Authorization", "Access-Control-Request-Method",
-                "User-Agent", "Host", "Referer"));
+        config.setAllowedHeaders(Arrays.asList(CorsConfiguration.ALL));
+//        config.setAllowedHeaders(Arrays.asList(
+//                "X-Requested-With", "Origin", "Content-Type",
+//                "Accept", "Authorization", "Access-Control-Request-Method",
+//                "User-Agent", "Host", "Referer"));
 //        config.setExposedHeaders(Collections.singletonList("*"));
         source.registerCorsConfiguration("/**", config);
         FilterRegistrationBean<CorsFilter> bean = new FilterRegistrationBean<>(new CorsFilter(source));
