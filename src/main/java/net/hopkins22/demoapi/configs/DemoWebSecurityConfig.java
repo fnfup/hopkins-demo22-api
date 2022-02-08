@@ -23,7 +23,6 @@ public class DemoWebSecurityConfig extends AADWebSecurityConfigurerAdapter {
             // -- Swagger UI v3 (OpenAPI)
             "/v3/api-docs/**",
             "/swagger-ui/**",
-            "/catalog/artist"
     };
 
     @Override
@@ -32,13 +31,13 @@ public class DemoWebSecurityConfig extends AADWebSecurityConfigurerAdapter {
         super.configure(http);
         http
 //                .requiresChannel()
-//                // .antMatchers("/login/oauth2/code/").requiresInsecure()
+//                .anyRequest().requiresInsecure()
+//                .and()
+                // .antMatchers("/login/oauth2/code/").requiresInsecure()
 //                .anyRequest().requiresSecure()
 //                .and()
-                .cors()
-                .and()
                 .authorizeRequests()
-                .antMatchers(AUTH_WHITELIST).permitAll()
+//                .antMatchers(AUTH_WHITELIST).permitAll()
                 .anyRequest().authenticated();
     }
 
