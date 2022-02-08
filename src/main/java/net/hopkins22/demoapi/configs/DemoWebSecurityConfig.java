@@ -28,6 +28,10 @@ public class DemoWebSecurityConfig extends AADWebSecurityConfigurerAdapter {
             "/logout/**",
             "/login**",
             "/logout**"
+            "/auth**",
+            "/oauth2/**"
+            "/oauth**",
+            "pathvar:{*oauth*}"
     };
 
     @Autowired // <- for autowired solution
