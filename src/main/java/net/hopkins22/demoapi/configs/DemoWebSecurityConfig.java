@@ -44,7 +44,8 @@ public class DemoWebSecurityConfig extends AADWebSecurityConfigurerAdapter {
     public FilterRegistrationBean<CorsFilter> simpleCorsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowCredentials(false);
+        config.setAllowCredentials(true);
+        // must be specific because we have allow credentials as true
         config.setAllowedOrigins(Arrays.asList(
                 "https://localhost:4200", "http://localhost:4200",
                 "http://localhost:8080", "https://localhost:8433",
@@ -52,7 +53,7 @@ public class DemoWebSecurityConfig extends AADWebSecurityConfigurerAdapter {
                 "http://hopkins-demo22-api-sc-hopkins-demo22-ui.azuremicroservices.io",
                 "https://hopkins-demo22-api-sc-hopkins-demo22-ui.azuremicroservices.io"
                  ));
-        config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "POST", "OPTIONS"));
+        config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "POST", "OPTIONS", "DELETE"));
         config.setAllowedHeaders(Arrays.asList(CorsConfiguration.ALL));
 //        config.setAllowedHeaders(Arrays.asList(
 //                "X-Requested-With", "Origin", "Content-Type",
@@ -60,7 +61,8 @@ public class DemoWebSecurityConfig extends AADWebSecurityConfigurerAdapter {
 //                "User-Agent", "Host", "Referer"));
 //        config.setExposedHeaders(Collections.singletonList("*"));
         source.registerCorsConfiguration("/**", config);
-        FilterRegistrationBean<CorsFilter> bean = new FilterRegistrationBean<>(new CorsFilter(source));
+        CorsFilter corsFilter = new CorsFilter(source);
+        FilterRegistrationBean<CorsFilter> bean = new FilterRegistrationBean<>(corsFilter);
         bean.setOrder(Ordered.HIGHEST_PRECEDENCE);
         System.out.println("---!!! Setting up CORS config !!!---");
         return bean;
@@ -72,8 +74,7 @@ public class DemoWebSecurityConfig extends AADWebSecurityConfigurerAdapter {
         System.out.println("Setting up web security");
         super.configure(http);
         http
-                .cors()
-                .and()
+                .csrf().disable() // required if using CORS and POST method
                 .authorizeRequests()
                 .anyRequest().permitAll();
 //                .antMatchers(
