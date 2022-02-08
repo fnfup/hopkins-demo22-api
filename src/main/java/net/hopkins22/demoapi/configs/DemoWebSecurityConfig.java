@@ -36,6 +36,8 @@ public class DemoWebSecurityConfig extends AADWebSecurityConfigurerAdapter {
                 // .antMatchers("/login/oauth2/code/").requiresInsecure()
 //                .anyRequest().requiresSecure()
 //                .and()
+                 .cors()
+                 .and()
                 .authorizeRequests()
 //                .antMatchers(AUTH_WHITELIST).permitAll()
                 .anyRequest().authenticated();
