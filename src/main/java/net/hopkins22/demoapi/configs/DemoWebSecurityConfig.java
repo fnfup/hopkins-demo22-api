@@ -24,6 +24,10 @@ public class DemoWebSecurityConfig extends AADWebSecurityConfigurerAdapter {
             // -- Swagger UI v3 (OpenAPI)
             "/v3/api-docs/**",
             "/swagger-ui/**",
+            "/login/**",
+            "/logout/**",
+            "/login**",
+            "/logout**"
     };
 
     @Autowired // <- for autowired solution
@@ -42,7 +46,7 @@ public class DemoWebSecurityConfig extends AADWebSecurityConfigurerAdapter {
                 .cors().configurationSource(corsConfigSource)
                 .and()
                 .authorizeRequests()
-//                .antMatchers(AUTH_WHITELIST).permitAll()
+                .antMatchers(AUTH_WHITELIST).permitAll()
                 .anyRequest().authenticated();
     }
 
