@@ -36,20 +36,28 @@ public class DemoWebSecurityConfig extends AADWebSecurityConfigurerAdapter {
             "/logout**",
             "/auth**",
             "/oauth2/**",
-            "/oauth**",
-            "pathvar:{*oauth*}"
+            "/oauth2**",
     };
 
     @Bean
-    @Order(Ordered.HIGHEST_PRECEDENCE)
+    //@Order(Ordered.HIGHEST_PRECEDENCE)
     public FilterRegistrationBean<CorsFilter> simpleCorsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowCredentials(true);
-        config.setAllowedOrigins(Arrays.asList("*",
-                "https://hopkins-demo22-api-sc-hopkins-demo22-ui.azuremicroservices.io"));
-        config.setAllowedMethods(Collections.singletonList("*"));
-        config.setAllowedHeaders(Collections.singletonList("*"));
+        config.setAllowCredentials(false);
+        config.setAllowedOrigins(Arrays.asList(
+                "https://localhost:4200", "http://localhost:4200",
+                "http://localhost:8080", "https://localhost:8433",
+                "http://localhost:1025",
+                "http://hopkins-demo22-api-sc-hopkins-demo22-ui.azuremicroservices.io",
+                "https://hopkins-demo22-api-sc-hopkins-demo22-ui.azuremicroservices.io"
+                 ));
+        config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "POST", "OPTIONS"));
+        config.setAllowedHeaders(Arrays.asList(
+                "X-Requested-With", "Origin", "Content-Type",
+                "Accept", "Authorization", "Access-Control-Request-Method",
+                "User-Agent", "Host", "Referer"));
+//        config.setExposedHeaders(Collections.singletonList("*"));
         source.registerCorsConfiguration("/**", config);
         FilterRegistrationBean<CorsFilter> bean = new FilterRegistrationBean<>(new CorsFilter(source));
         bean.setOrder(Ordered.HIGHEST_PRECEDENCE);
@@ -63,13 +71,13 @@ public class DemoWebSecurityConfig extends AADWebSecurityConfigurerAdapter {
         System.out.println("Setting up web security");
         super.configure(http);
         http
-                .cors()
-                .and()
-                .authorizeRequests()
-                .antMatchers(
-                        "/catalog**", "/user**", "/order**"
-                ).authenticated()
-                .antMatchers(AUTH_WHITELIST).permitAll();
+                .cors();
+//                .and()
+//                .authorizeRequests()
+//                .antMatchers(
+//                        "/catalog**", "/user**", "/order**"
+//                ).authenticated()
+//                .antMatchers(AUTH_WHITELIST).permitAll();
 
 
         //                .requiresChannel()
