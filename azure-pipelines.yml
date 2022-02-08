@@ -48,6 +48,14 @@ steps:
     AZ_DB_CSTR_DB: $(demodbtarget)
     AZ_DB_CSTR_USER: $(demodbuser)
     AZ_DB_CSTR_PWD: $(demodbpwd)
+    AZ_ID_TENANT: $(aztenantid)
+    AZ_ID_CLIENTID: $(azclientid)
+    AZ_ID_SECRET: $(azclientsecret)
+    AZ_ID_APPURI: $(azappuri)
+    AZ_SSL_KEY_ALIAS: $(sslkeyalias)
+    AZ_SSL_KEY_STORETYPE: $(sslkeystoretype)
+    AZ_SSL_KEY_TRUST_STORETYPE: $(ssltruststoretype)
+    AZ_SSL_KEYVAULT_URI: $(azkeyvaulturi)
 
 - task: AzureSpringCloud@0
   inputs:
