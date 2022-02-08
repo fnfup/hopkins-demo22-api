@@ -27,9 +27,9 @@ public class DemoWebSecurityConfig extends AADWebSecurityConfigurerAdapter {
             "/login/**",
             "/logout/**",
             "/login**",
-            "/logout**"
+            "/logout**",
             "/auth**",
-            "/oauth2/**"
+            "/oauth2/**",
             "/oauth**",
             "pathvar:{*oauth*}"
     };
