@@ -72,9 +72,10 @@ public class DemoWebSecurityConfig extends AADWebSecurityConfigurerAdapter {
         System.out.println("Setting up web security");
         super.configure(http);
         http
-                .cors();
-//                .and()
-//                .authorizeRequests()
+                .cors()
+                .and()
+                .authorizeRequests()
+                .anyRequest().permitAll();
 //                .antMatchers(
 //                        "/catalog**", "/user**", "/order**"
 //                ).authenticated()
