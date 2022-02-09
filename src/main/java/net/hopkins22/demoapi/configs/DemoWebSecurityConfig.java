@@ -51,7 +51,10 @@ public class DemoWebSecurityConfig extends AADWebSecurityConfigurerAdapter {
                 "http://localhost:8080", "https://localhost:8433",
                 "http://localhost:1025",
                 "http://hopkins-demo22-api-sc-hopkins-demo22-ui.azuremicroservices.io",
-                "https://hopkins-demo22-api-sc-hopkins-demo22-ui.azuremicroservices.io"
+                "https://hopkins-demo22-api-sc-hopkins-demo22-ui.azuremicroservices.io",
+                "http://hopkins-demo22-api-sc-hopkins-demo22-api.azuremicroservices.io",
+                "https://hopkins-demo22-api-sc-hopkins-demo22-api.azuremicroservices.io",
+                "https://login.microsoftonline.com"
                  ));
         config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "POST", "OPTIONS", "DELETE"));
         config.setAllowedHeaders(Arrays.asList(CorsConfiguration.ALL));
