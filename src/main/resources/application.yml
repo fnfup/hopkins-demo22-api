@@ -1,0 +1,11 @@
+
+
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          key-uri: https://login.microsoftonline.com/${AZ_ID_TENANT}/discovery/keys
+          jwk-set-uri: https://login.microsoftonline.com/${AZ_ID_TENANT}/discovery/v2.0/keys
+          issuer-uri: https://login.microsoftonline.com/${AZ_ID_TENANT}/v2.0
+
