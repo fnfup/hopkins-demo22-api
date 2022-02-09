@@ -1,5 +1,6 @@
 package net.hopkins22.demoapi.configs;
 
+import com.azure.spring.aad.webapi.AADJwtBearerTokenAuthenticationConverter;
 import com.azure.spring.aad.webapp.AADWebSecurityConfigurerAdapter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -62,6 +63,7 @@ public class DemoWebSecurityConfig extends AADWebSecurityConfigurerAdapter {
 //                "X-Requested-With", "Origin", "Content-Type",
 //                "Accept", "Authorization", "Access-Control-Request-Method",
 //                "User-Agent", "Host", "Referer"));
+//        Content-Type,X-CAF-Authorization-Token,sessionToken,X-TOKEN,Authorization
 //        config.setExposedHeaders(Collections.singletonList("*"));
         source.registerCorsConfiguration("/**", config);
         CorsFilter corsFilter = new CorsFilter(source);
