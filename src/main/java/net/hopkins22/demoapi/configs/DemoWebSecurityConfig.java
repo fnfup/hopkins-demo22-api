@@ -76,11 +76,11 @@ public class DemoWebSecurityConfig extends AADWebSecurityConfigurerAdapter {
         http
                 .csrf().disable() // required if using CORS and POST method
                 .authorizeRequests()
-                .anyRequest().permitAll();
-//                .antMatchers(
-//                        "/catalog**", "/user**", "/order**"
-//                ).authenticated()
-//                .antMatchers(AUTH_WHITELIST).permitAll();
+//                .anyRequest().permitAll()
+                .antMatchers(
+                        "/catalog/**", "/user/**", "/order/**"
+                ).authenticated()
+                .antMatchers(AUTH_WHITELIST).permitAll();
 
 
         //                .requiresChannel()
