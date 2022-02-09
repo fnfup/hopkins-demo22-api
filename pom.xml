@@ -47,6 +47,10 @@
 			<groupId>com.azure.spring</groupId>
 			<artifactId>azure-spring-boot-starter-active-directory</artifactId>
 		</dependency>
+        <dependency>
+            <groupId>com.azure.spring</groupId>
+            <artifactId>azure-spring-boot-starter-keyvault-certificates</artifactId>
+        </dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter</artifactId>
@@ -59,6 +63,11 @@
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
+				<version>${spring-cloud.version}</version>
+			</dependency>
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-dependencies</artifactId>

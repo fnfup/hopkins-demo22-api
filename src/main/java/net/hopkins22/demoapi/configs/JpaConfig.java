@@ -16,6 +16,10 @@ public class JpaConfig {
         System.out.println("db: " + System.getenv("AZ_DB_CSTR_DB"));
         System.out.println("user: " + System.getenv("AZ_DB_CSTR_USER"));
         // System.out.println("pwd: " + System.getenv("AZ_DB_CSTR_PWD"));
+        System.out.println("tenant: " + System.getenv("AZ_ID_TENANT"));
+        System.out.println("client_id: " + System.getenv("AZ_ID_CLIENTID"));
+        // System.out.println("client_secret: " + System.getenv("AZ_ID_SECRET"));
+        // System.out.println("app_uri: " + System.getenv("AZ_ID_APPURI"));
         System.out.println("url: " + getDataSourceUrl());
         System.out.println("------ DB INIT PROPERTIES ------");
 
