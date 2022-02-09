@@ -79,13 +79,13 @@ public class DemoWebSecurityConfig extends AADWebSecurityConfigurerAdapter {
         System.out.println("Setting up web security");
         super.configure(http);
         http
-                .csrf().disable() // required if using CORS and POST method
-                .authorizeRequests()
-//                .anyRequest().permitAll()
-                .antMatchers(
-                        "/catalog/**", "/user/**", "/order/**"
-                ).authenticated()
-                .antMatchers(AUTH_WHITELIST).permitAll();
+                .csrf().disable(); // required if using CORS and POST method
+//                .authorizeRequests()
+////                .anyRequest().permitAll()
+//                .antMatchers(
+//                        "/catalog/**", "/user/**", "/order/**"
+//                ).authenticated()
+//                .antMatchers(AUTH_WHITELIST).permitAll();
 
 
         //                .requiresChannel()
